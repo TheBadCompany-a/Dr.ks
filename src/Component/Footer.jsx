@@ -1,6 +1,7 @@
 import React from "react";
 import signatureImg from "../assets/signature.png";
 import { useTheme } from "../context/ThemeContext";
+import SiteCredits from "./SiteCredits";
 
 const DEFAULT_NAV_LINKS = ["Overview", "Experience", "Awards", "Coaching"];
 const DEFAULT_CONNECT_LINKS = ["LinkedIn", "Executive Bio", "Privacy Policy"];
@@ -77,37 +78,7 @@ export default function Footer({
           <p className="text-charcoal/80 text-sm">
             © {year} {name}. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-[8px] md:gap-[10px] p-[6px_10px] md:p-[8px_12px] border border-black/10 rounded-[10px] w-fit bg-black/5 backdrop-blur-[10px]">
-            <a
-              href="https://play.fabulousmedia.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="FabulousMedia"
-              className="flex items-center justify-center bg-[#fff] p-[4px] rounded-[6px] opacity-60 transition-all duration-300 ease-out hover:opacity-100 hover:-translate-y-[2px] hover:shadow-[0_0_15px_rgba(253,181,20,0.5)]"
-            >
-              <img
-                src="https://play.fabulousmedia.in/sitecredit/images/fabulousmedia.svg"
-                alt="FabulousMedia"
-                className="h-[10px] md:h-[12px] w-auto block"
-              />
-            </a>
-
-            <div className="w-[1px] h-[12px] bg-black/10"></div>
-
-            <a
-              href="https://gocommercially.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GoCommercially"
-              className="flex items-center justify-center bg-[#fff] p-[4px] rounded-[6px] opacity-60 transition-all duration-300 ease-out hover:opacity-100 hover:-translate-y-[2px] hover:shadow-[0_0_15px_rgba(253,181,20,0.5)]"
-            >
-              <img
-                src="https://play.fabulousmedia.in/sitecredit/images/gocommercially.svg"
-                alt="GoCommercially"
-                className="h-[10px] md:h-[12px] w-auto block"
-              />
-            </a>
-          </div>
+          <SiteCredits />
         </div>
       </div>
     </footer>

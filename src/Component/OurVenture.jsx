@@ -113,10 +113,15 @@ export default function OurVenture() {
 
                 {/* Action Button */}
                 <div className="mt-10">
-                  <button className="inline-flex items-center gap-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-sm px-7 py-4 shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 cursor-pointer">
+                  <a
+                    href="https://www.shiftquest.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-sm px-7 py-4 shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 cursor-pointer"
+                  >
                     Learn More About ShiftQuest
                     <ArrowRight size={18} />
-                  </button>
+                  </a>
                 </div>
 
               </div>

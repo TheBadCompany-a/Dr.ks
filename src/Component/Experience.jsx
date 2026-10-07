@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 import coaching from "../assets/coaching.png";
 import icfBadge from "../assets/icf-badge.jpg";
+import certIica from "../assets/cert_iica.png";
+import certBrsr from "../assets/cert_brsr.png";
+import certEsg from "../assets/cert_esg.png";
+import certIpo from "../assets/cert_ipo.png";
+import certDigitalDirector from "../assets/cert_digital_director.png";
 
 const EXPERTISE_CARDS = [
   {
@@ -63,6 +68,34 @@ const CERTIFICATIONS = [
   { label: "Assessment", title: "Qualified Independent Director Assessment – IICA" },
 ];
 
+const CERTIFICATE_IMAGES = [
+  {
+    src: certIica,
+    title: "Independent Director's Databank",
+    issuer: "Indian Institute of Corporate Affairs (IICA)",
+  },
+  {
+    src: certBrsr,
+    title: "Certified BRSR Expert",
+    issuer: "World Development Corporation / Directors' Institute",
+  },
+  {
+    src: certEsg,
+    title: "Certified ESG Expert",
+    issuer: "World Development Corporation / Directors' Institute",
+  },
+  {
+    src: certIpo,
+    title: "IPO Strategy & Business Valuation",
+    issuer: "Directors' Institute & Woolf",
+  },
+  {
+    src: certDigitalDirector,
+    title: "Certified Digital Director",
+    issuer: "Digital Directors' Program",
+  },
+];
+
 const ACADEMICS = [
   { title: "Ph.D. in Human Resources Accounting", sub: "Doctoral Research" },
   { title: "Master of Personnel Management", sub: "University of Pune " },
@@ -74,6 +107,8 @@ const glassPanel =
   "bg-card-bg/60 backdrop-blur-xl border border-border-light transition-transform duration-[0.4s] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1";
 
 export default function ExecutiveCoaching() {
+  const [selectedCert, setSelectedCert] = useState(null);
+
   return (
     <div className="font-sans text-base text-charcoal bg-background-soft overflow-x-hidden min-h-screen">
       <main className="py-20 max-w-[1140px] mx-auto px-8 md:px-16">
@@ -157,11 +192,8 @@ export default function ExecutiveCoaching() {
           </div>
         </section>
 
-     
-      
-
         {/* Academic & Professional */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16">
           {/* Main Foundation */}
           <div className="md:col-span-8">
             <ScrollReveal variant="fade-up">
@@ -225,9 +257,88 @@ export default function ExecutiveCoaching() {
             </ScrollReveal>
           </div>
         </section>
+
+        {/* Official Certificate Documents Gallery */}
+        <section className="mb-10">
+          <ScrollReveal variant="fade-up">
+            <div className="flex items-center justify-between mb-6 border-b border-border-light/20 pb-4">
+              <h3
+                style={{ fontFamily: "'Playfair Display', serif" }}
+                className="text-2xl font-semibold text-charcoal"
+              >
+                Verified Certification Credentials
+              </h3>
+              <span className="text-xs font-semibold text-charcoal/70">03 / CERTIFICATE DOCUMENTS</span>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
+            {CERTIFICATE_IMAGES.map((cert, idx) => (
+              <ScrollReveal key={cert.title} variant="scale-up" delay={idx * 100}>
+                <div
+                  onClick={() => setSelectedCert(cert)}
+                  className={`${glassPanel} p-4 rounded-2xl cursor-pointer group flex flex-col h-full hover:border-primary transition-all duration-300 shadow-md hover:shadow-xl bg-card-bg`}
+                >
+                  <div className="overflow-hidden rounded-xl bg-slate-100/80 aspect-[3/4] relative mb-4 border border-slate-200/60 flex items-center justify-center p-2">
+                    <img
+                      src={cert.src}
+                      alt={cert.title}
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 rounded-lg shadow-sm"
+                    />
+                    <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                      <span className="bg-white/95 text-primary font-bold text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        <span className="material-symbols-outlined text-sm">visibility</span> View Certificate
+                      </span>
+                    </div>
+                  </div>
+                  <h4 className="font-bold text-base text-charcoal group-hover:text-primary transition-colors leading-snug">
+                    {cert.title}
+                  </h4>
+                  <p className="text-xs text-charcoal/70 mt-1">{cert.issuer}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </section>
       </main>
 
-      
+      {/* Certificate Modal / Lightbox */}
+      {selectedCert && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-300"
+          onClick={() => setSelectedCert(null)}
+        >
+          <div
+            className="relative max-w-4xl w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl p-4 md:p-6 flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedCert(null)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors cursor-pointer z-10"
+              aria-label="Close"
+            >
+              <span className="material-symbols-outlined text-xl">close</span>
+            </button>
+            <div className="text-center mb-4 pr-8">
+              <h3
+                style={{ fontFamily: "'Playfair Display', serif" }}
+                className="text-xl md:text-2xl font-bold text-charcoal"
+              >
+                {selectedCert.title}
+              </h3>
+              <p className="text-sm text-charcoal/70">{selectedCert.issuer}</p>
+            </div>
+            <div className="w-full flex-1 overflow-auto flex items-center justify-center p-2 bg-slate-50 rounded-xl border border-slate-200">
+              <img
+                src={selectedCert.src}
+                alt={selectedCert.title}
+                className="max-h-[70vh] w-auto object-contain shadow-lg rounded"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       <style>{`
         .material-symbols-outlined {
           font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;

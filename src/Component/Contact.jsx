@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ScrollReveal from "./ScrollReveal";
 import CountUp from "./CountUp";
-
-const REGIONS = ["London (Primary)", "Dubai (Strategic Hub)", "Mumbai (Technology Ops)"];
 
 const METRICS = [
   { value: "24h", label: "RESPONSE TARGET" },
@@ -13,40 +11,18 @@ const METRICS = [
 const glassPanel =
   "bg-card-bg/70 backdrop-blur-xl border border-border-light";
 
-function Field({ label, children }) {
-  const [focused, setFocused] = useState(false);
-  const [hasValue, setHasValue] = useState(false);
-
-  const active = focused || hasValue;
-
-  return (
-    <div className="flex flex-col gap-2">
-      <label
-        className="text-xs font-semibold uppercase tracking-widest transition-all duration-200"
-        style={{
-          color: active ? "var(--color-primary)" : "var(--color-charcoal)",
-          opacity: active ? 1 : 0.7,
-          transform: active ? "translateY(-2px)" : "translateY(0)",
-        }}
-      >
-        {label}
-      </label>
-      {React.cloneElement(children, {
-        onFocus: () => setFocused(true),
-        onBlur: (e) => {
-          setFocused(false);
-          setHasValue(!!e.target.value);
-        },
-        onChange: (e) => setHasValue(!!e.target.value),
-      })}
-    </div>
-  );
-}
-
 export default function Contact() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  useEffect(() => {
+    // Inject form embed script for dynamic height & responsive iframe adjustments
+    const scriptSrc = "https://link.on.bingo/js/form_embed.js";
+    let script = document.querySelector(`script[src="${scriptSrc}"]`);
+    if (!script) {
+      script = document.createElement("script");
+      script.src = scriptSrc;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
 
   return (
     <div className="bg-background-soft text-charcoal font-sans overflow-x-hidden min-h-screen">
@@ -73,72 +49,43 @@ export default function Contact() {
           </ScrollReveal>
 
           {/* Bento Contact Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-16">
-            {/* Contact Form (Left) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-16 items-start">
+            {/* On.Bingo Embedded Form (Left) */}
             <div className="lg:col-span-7 flex flex-col gap-6">
               <ScrollReveal variant="fade-up">
-                <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <Field label="Full Name">
-                      <input
-                        className="bg-transparent border-0 border-b border-border-light py-4 focus:ring-0 focus:border-primary transition-all text-lg placeholder:text-charcoal/40 text-charcoal"
-                        placeholder="Johnathan Doe"
-                        type="text"
-                      />
-                    </Field>
-                    <Field label="Organization">
-                      <input
-                        className="bg-transparent border-0 border-b border-border-light py-4 focus:ring-0 focus:border-primary transition-all text-lg placeholder:text-charcoal/40 text-charcoal"
-                        placeholder="Global Enterprises Inc."
-                        type="text"
-                      />
-                    </Field>
-                  </div>
-
-                  <Field label="Email Address">
-                    <input
-                      className="bg-transparent border-0 border-b border-border-light py-4 focus:ring-0 focus:border-primary transition-all text-lg placeholder:text-charcoal/40 text-charcoal"
-                      placeholder="j.doe@executive.com"
-                      type="email"
-                    />
-                  </Field>
-
-                  <Field label="Inquiry Type">
-                    <select className="bg-card-bg border-0 border-b border-border-light py-4 focus:ring-0 focus:border-primary transition-all text-lg text-charcoal appearance-none">
-                      <option className="bg-card-bg text-charcoal">Executive Leadership Consulting</option>
-                      <option className="bg-card-bg text-charcoal">Board Membership Opportunity</option>
-                      <option className="bg-card-bg text-charcoal">Keynote Speaking &amp; Panels</option>
-                      <option className="bg-card-bg text-charcoal">Strategic Mentorship</option>
-                      <option className="bg-card-bg text-charcoal">Other</option>
-                    </select>
-                  </Field>
-
-                  <Field label="Your Message">
-                    <textarea
-                      className="bg-transparent border-0 border-b border-border-light py-4 focus:ring-0 focus:border-primary transition-all text-lg placeholder:text-charcoal/40 text-charcoal resize-none"
-                      placeholder="How can we collaborate on your vision?"
-                      rows="4"
-                    />
-                  </Field>
-
-                  <div className="mt-6">
-                    <button
-                      type="submit"
-                      className="bg-primary dark:bg-accent text-white dark:text-black text-xs font-semibold px-12 py-5 tracking-[0.2em] uppercase hover:shadow-[0px_20px_40px_rgba(0,0,0,0.1)] hover:bg-black transition-all active:scale-95 cursor-pointer"
-                    >
-                      SEND MESSAGE
-                    </button>
-                  </div>
-                </form>
+                <div className="w-full min-h-[500px]">
+                  <iframe
+                    src="https://link.on.bingo/widget/form/BFMDMx4AHpaD8BynAScH"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      minHeight: "500px",
+                      border: "none",
+                      borderRadius: "8px",
+                    }}
+                    id="inline-BFMDMx4AHpaD8BynAScH"
+                    data-layout="{'id':'INLINE'}"
+                    data-trigger-type="alwaysShow"
+                    data-trigger-value=""
+                    data-activation-type="alwaysActivated"
+                    data-activation-value=""
+                    data-deactivation-type="neverDeactivate"
+                    data-deactivation-value=""
+                    data-form-name="Dr.Krishan"
+                    data-height="496"
+                    data-layout-iframe-id="inline-BFMDMx4AHpaD8BynAScH"
+                    data-form-id="BFMDMx4AHpaD8BynAScH"
+                    title="Dr.Krishan"
+                  />
+                </div>
               </ScrollReveal>
             </div>
 
             {/* Info Sidebar (Right) */}
             <div className="lg:col-span-5 flex flex-col gap-8">
-
               {/* Contact Details */}
               <ScrollReveal variant="fade-up" delay={300}>
-                <div className="flex flex-col gap-6 p-6 border border-border-light bg-card-bg rounded-xl">
+                <div className="flex flex-col gap-6 p-6 border border-border-light bg-card-bg rounded-xl shadow-sm">
                   <div className="flex flex-col gap-2">
                     <h3
                       style={{ fontFamily: "'Playfair Display', serif" }}
@@ -146,27 +93,25 @@ export default function Contact() {
                     >
                       Direct Lines
                     </h3>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-3 mt-2">
                       <a
-                        className="text-lg text-primary hover:text-charcoal transition-colors flex items-center gap-4"
-                        href="mailto:krishansy1@gmail.com"
+                        className="text-base text-primary hover:text-charcoal transition-colors flex items-center gap-3"
+                        href="mailto:krishan@shiftquest.in"
                       >
-                        <span className="material-symbols-outlined text-[20px]">mail</span>
-                        krishan@shiftquest.com
+                        <span className="material-symbols-outlined text-[20px] text-[#D4AF37]">mail</span>
+                        krishan@shiftquest.in
                       </a>
                       <a
-                        className="text-lg text-charcoal/80 hover:text-charcoal transition-colors flex items-center gap-4"
-                        href="tel:+919910905448"
+                        className="text-base text-charcoal/80 hover:text-charcoal transition-colors flex items-center gap-3"
+                        href="tel:+919650106003"
                       >
-                        <span className="material-symbols-outlined text-[20px]">call</span>
+                        <span className="material-symbols-outlined text-[20px] text-[#D4AF37]">call</span>
                         +91 9650106003
                       </a>
                     </div>
                   </div>
 
-                  <div className="h-px bg-accent w-full" />
-
-               
+                  <div className="h-px bg-border-light w-full" />
                 </div>
               </ScrollReveal>
             </div>
