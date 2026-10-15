@@ -107,7 +107,7 @@ export default function ExecutivePortfolio() {
               </ScrollReveal>
 
               <ScrollReveal variant="fade-up" delay={400}>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-6">
                   <div>
                     <span
                       style={{ fontFamily: "'Playfair Display', serif" }}
@@ -135,21 +135,10 @@ export default function ExecutivePortfolio() {
                       style={{ fontFamily: "'Playfair Display', serif" }}
                       className="block text-4xl font-bold text-charcoal"
                     >
-                      <CountUp end={75} suffix="+" />
+                      <CountUp end={125} suffix="+" />
                     </span>
                     <span className="text-[10px] text-charcoal/70 tracking-widest uppercase font-semibold block mt-1">
-                       &amp; Bonus Settlements
-                    </span>
-                  </div>
-                  <div>
-                    <span
-                      style={{ fontFamily: "'Playfair Display', serif" }}
-                      className="block text-4xl font-bold text-charcoal"
-                    >
-                      <CountUp end={48} suffix="+"/>
-                    </span>
-                    <span className="text-[10px] text-charcoal/70 tracking-widest uppercase font-semibold block mt-1">
-                      Long-Term Wage Settlements
+                      Bipartite &amp; Tripartite Settlements
                     </span>
                   </div>
                   <div className="col-span-2 sm:col-span-1">
